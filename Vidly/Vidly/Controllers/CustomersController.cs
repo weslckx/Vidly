@@ -52,6 +52,15 @@ namespace Vidly.Controllers
             return View(viewModel);
         }
 
+        [HttpPost]
+        public ActionResult Create(Customer customer) //viewmodel gaat hier, maar customer ook; zo slim om te zien dat customer wordt gebruikt
+        {
+            _dbContext.Customers.Add(customer);
+            _dbContext.SaveChanges();
+
+            return RedirectToAction("Index", "Customers");
+        }
+
         //private IEnumerable<Customer> GetCustomers()
         //{
         //    return new List<Customer>()
