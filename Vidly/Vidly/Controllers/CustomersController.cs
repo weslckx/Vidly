@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Vidly.Models;
+using System.Data.Entity;
 
 namespace Vidly.Controllers
 {
@@ -25,7 +26,9 @@ namespace Vidly.Controllers
         // GET: Customers
         public ActionResult Index()
         {
-            return View(_dbContext.Customers.ToList());
+            // add System.Data.Entity
+            //add include to eager load. We need membershiptype, won't be loaded by default!
+            return View(_dbContext.Customers.Include(c=> c.MembershipType).ToList());
         }
 
         public ActionResult Details(int id)

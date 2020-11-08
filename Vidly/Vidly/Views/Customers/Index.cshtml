@@ -12,6 +12,7 @@
     <thead>
         <tr>
             <td>Customer Name</td>
+            <td>Membership Type</td>
         </tr>
     </thead>
     <tbody>
@@ -20,6 +21,7 @@
         {
 <tr>
     <td>@Html.ActionLink(customer.Name, "Details", "Customers", new { id = customer.Id }, null)</td>
+    <td>@customer.MembershipType.Name</td>
 </tr>            }
     </tbody>
 

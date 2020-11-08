@@ -199,6 +199,14 @@
     <Compile Include="Migrations\202011081050212_AppliedAnnotationsToCustomer.Designer.cs">
       <DependentUpon>202011081050212_AppliedAnnotationsToCustomer.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202011081132566_AddedColumnNameToMemberShipType.cs" />
+    <Compile Include="Migrations\202011081132566_AddedColumnNameToMemberShipType.Designer.cs">
+      <DependentUpon>202011081132566_AddedColumnNameToMemberShipType.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202011081134004_PopulateColumnMembershipNameInMembershipTypes.cs" />
+    <Compile Include="Migrations\202011081134004_PopulateColumnMembershipNameInMembershipTypes.Designer.cs">
+      <DependentUpon>202011081134004_PopulateColumnMembershipNameInMembershipTypes.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Customer.cs" />
@@ -299,6 +307,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202011081050212_AppliedAnnotationsToCustomer.resx">
       <DependentUpon>202011081050212_AppliedAnnotationsToCustomer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202011081132566_AddedColumnNameToMemberShipType.resx">
+      <DependentUpon>202011081132566_AddedColumnNameToMemberShipType.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202011081134004_PopulateColumnMembershipNameInMembershipTypes.resx">
+      <DependentUpon>202011081134004_PopulateColumnMembershipNameInMembershipTypes.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
