@@ -19,9 +19,11 @@ namespace Vidly.Models
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yyyy}")]
         public DateTime AddDate { get; set; }
         [Required]
+        [Display(Name ="Number in Stock")]
         public int Stock { get; set; }
 
         //NAV PROP
+        [Display(Name ="Genre")]
         public byte GenreId { get; set; } // ook byte zetten, anders twee ID
         public Genre Genre { get; set; }
 
