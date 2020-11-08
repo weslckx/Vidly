@@ -207,9 +207,38 @@
     <Compile Include="Migrations\202011081134004_PopulateColumnMembershipNameInMembershipTypes.Designer.cs">
       <DependentUpon>202011081134004_PopulateColumnMembershipNameInMembershipTypes.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202011081152513_AddedColumnBirthdateToCustomerTable.cs" />
+    <Compile Include="Migrations\202011081152513_AddedColumnBirthdateToCustomerTable.Designer.cs">
+      <DependentUpon>202011081152513_AddedColumnBirthdateToCustomerTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202011081214462_AdjustedMovieColumns.cs" />
+    <Compile Include="Migrations\202011081214462_AdjustedMovieColumns.Designer.cs">
+      <DependentUpon>202011081214462_AdjustedMovieColumns.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202011081217388_AddedGenre.cs" />
+    <Compile Include="Migrations\202011081217388_AddedGenre.Designer.cs">
+      <DependentUpon>202011081217388_AddedGenre.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202011081229546_SetGenreIdColumnToByteType.cs" />
+    <Compile Include="Migrations\202011081229546_SetGenreIdColumnToByteType.Designer.cs">
+      <DependentUpon>202011081229546_SetGenreIdColumnToByteType.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202011081230363_PopulateGenreTable.cs" />
+    <Compile Include="Migrations\202011081230363_PopulateGenreTable.Designer.cs">
+      <DependentUpon>202011081230363_PopulateGenreTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202011081246520_FixedBugMovie.cs" />
+    <Compile Include="Migrations\202011081246520_FixedBugMovie.Designer.cs">
+      <DependentUpon>202011081246520_FixedBugMovie.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202011081340110_FixMovies.cs" />
+    <Compile Include="Migrations\202011081340110_FixMovies.Designer.cs">
+      <DependentUpon>202011081340110_FixMovies.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Customer.cs" />
+    <Compile Include="Models\Genre.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\MembershipType.cs" />
@@ -276,6 +305,7 @@
     <Content Include="Views\Movies\Index.cshtml" />
     <Content Include="Views\Customers\Index.cshtml" />
     <Content Include="Views\Customers\Details.cshtml" />
+    <Content Include="Views\Movies\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -313,6 +343,27 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202011081134004_PopulateColumnMembershipNameInMembershipTypes.resx">
       <DependentUpon>202011081134004_PopulateColumnMembershipNameInMembershipTypes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202011081152513_AddedColumnBirthdateToCustomerTable.resx">
+      <DependentUpon>202011081152513_AddedColumnBirthdateToCustomerTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202011081214462_AdjustedMovieColumns.resx">
+      <DependentUpon>202011081214462_AdjustedMovieColumns.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202011081217388_AddedGenre.resx">
+      <DependentUpon>202011081217388_AddedGenre.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202011081229546_SetGenreIdColumnToByteType.resx">
+      <DependentUpon>202011081229546_SetGenreIdColumnToByteType.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202011081230363_PopulateGenreTable.resx">
+      <DependentUpon>202011081230363_PopulateGenreTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202011081246520_FixedBugMovie.resx">
+      <DependentUpon>202011081246520_FixedBugMovie.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202011081340110_FixMovies.resx">
+      <DependentUpon>202011081340110_FixMovies.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

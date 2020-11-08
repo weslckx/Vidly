@@ -1,4 +1,4 @@
-﻿
+﻿@model List<Vidly.Models.Movie>
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -6,3 +6,22 @@
 
 <h2>Index</h2>
 
+<table class=“table table-­bordered table­‐hover”>
+    <thead>
+        <tr>
+            <td>Movie Name</td>
+            <td>Genre</td>
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (var movie in Model)
+        {
+            <tr>
+                <td>@Html.ActionLink(movie.Title,"Details","Movies", new { id= movie.Id },null)</td>
+                <td>@movie.Genre.Name</td>
+            </tr>
+       }
+    </tbody>
+    
+</table>
