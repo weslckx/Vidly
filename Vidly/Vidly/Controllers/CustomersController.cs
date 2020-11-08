@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using Vidly.Models;
 using System.Data.Entity;
 using Vidly.ViewModels;
+using System.Data.Entity.Migrations;
 
 namespace Vidly.Controllers
 {
@@ -44,21 +45,56 @@ namespace Vidly.Controllers
 
         public ActionResult New()
         {
-            var viewModel = new NewCustomerViewModel
+            var viewModel = new CustomerFormViewModel
             {
                 MembershipTypes = _dbContext.MembershipTypes.ToList()
             };
 
-            return View(viewModel);
+            return View("CustomerForm",viewModel);
         }
 
         [HttpPost]
-        public ActionResult Create(Customer customer) //viewmodel gaat hier, maar customer ook; zo slim om te zien dat customer wordt gebruikt
+        public ActionResult Save(Customer customer) //viewmodel gaat hier, maar customer ook; zo slim om te zien dat customer wordt gebruikt
         {
+            if(customer.Id==0)
             _dbContext.Customers.Add(customer);
+
+            else
+            {
+                // werkt hier met id, dus best nog ID meegeven in Form (hidden)
+                var customerInDb = _dbContext.Customers.Single(c => c.Id == customer.Id);
+                //TryUpdateModel(customerInDb); Safety problems
+
+                customerInDb.Name = customer.Name;
+                customerInDb.Birthdate = customer.Birthdate;
+                customerInDb.MembershipTypeId = customer.MembershipTypeId;
+                customerInDb.IsSubscribedToNewsletter = customer.IsSubscribedToNewsletter;
+                // or use AutoMapper (library) Mapper.map(customer,customerinDB) - nog op te zoeken
+                // ipv customerclass kan je bv customerDto (data transafer object maken, afgeslankte versie van customer)
+
+
+            }
+
             _dbContext.SaveChanges();
 
             return RedirectToAction("Index", "Customers");
+        }
+
+        public ActionResult Edit(int id)
+        {
+            var customer = _dbContext.Customers.SingleOrDefault(c => c.Id == id);
+
+            if (customer == null)
+                return HttpNotFound();
+
+            var viewModel = new CustomerFormViewModel
+            {
+                Customer = customer,
+                MembershipTypes = _dbContext.MembershipTypes.ToList()
+                
+            };
+
+            return View("CustomerForm",viewModel);
         }
 
         //private IEnumerable<Customer> GetCustomers()
