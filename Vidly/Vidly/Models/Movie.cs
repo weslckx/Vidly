@@ -20,10 +20,11 @@ namespace Vidly.Models
         public DateTime AddDate { get; set; }
         [Required]
         [Display(Name ="Number in Stock")]
+        [Range(1,20)]
         public int Stock { get; set; }
 
         //NAV PROP
-        [Display(Name ="Genre")]
+        [Display(Name ="Genre")] 
         public byte GenreId { get; set; } // ook byte zetten, anders twee ID
         public Genre Genre { get; set; }
 

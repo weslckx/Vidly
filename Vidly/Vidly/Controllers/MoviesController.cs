@@ -45,7 +45,9 @@ namespace Vidly.Controllers
         {
             var viewModel = new MovieFormViewModel
             {
-                Genres = _dbContext.Genres.ToList()
+                Genres = _dbContext.Genres.ToList(),
+              //  Movie = new Movie() // otherwise in validationsummery, error for our hidden field ID, now id=0
+              // removed, now fixed in Viewmodel
             };
 
             ViewData["Task"] = "New Movie";
@@ -53,8 +55,19 @@ namespace Vidly.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Save(Movie movie)
         {
+            if(!ModelState.IsValid)
+            {
+                var viewModel = new MovieFormViewModel(movie)
+                {
+                    Genres = _dbContext.Genres.ToList()
+                };
+                return View("MovieForm", viewModel);
+            }
+                
+
             if (movie.Id==0)
             {
                 movie.AddDate = DateTime.Now;
@@ -83,10 +96,11 @@ namespace Vidly.Controllers
             if (movie == null)
                 return HttpNotFound();
 
-            var viewModel = new MovieFormViewModel
+            var viewModel = new MovieFormViewModel(movie)
             {
                 Genres = _dbContext.Genres.ToList(),
-                Movie = movie
+                //Movie = movie
+                // fix in viewmodel, now individuel properties. But cleaner to put it in viewmodel (constructor)
             };
 
             ViewData["Task"] = "Edit Movie";

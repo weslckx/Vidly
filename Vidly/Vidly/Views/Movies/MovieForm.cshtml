@@ -4,30 +4,44 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>@ViewData["Task"]</h2>
+@*<h2>@ViewData["Task"]</h2>*@
+<h1>@Model.FormTitle</h1>
 
 @using (Html.BeginForm("Save", "Movies"))
 {
+    @Html.ValidationSummary(true, "Please fix the following fields:")
+
     <div class="form-group">
-        @Html.LabelFor(m => m.Movie.Title)
-        @Html.TextBoxFor(m => m.Movie.Title, new { @class = "form-control" })
+        @Html.LabelFor(m => m.Title)
+        @Html.TextBoxFor(m => m.Title, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Title)
     </div>
     <div class="form-group">
-        @Html.LabelFor(m => m.Movie.ReleaseDate)
-        @Html.TextBoxFor(m => m.Movie.ReleaseDate, "{0:dd/MM/yyyy}", new { @class = "form-control" })
+        @Html.LabelFor(m => m.ReleaseDate)
+        @Html.TextBoxFor(m => m.ReleaseDate, "{0:dd/MM/yyyy}", new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.ReleaseDate)
     </div>
     <div class="form-group">
-        @Html.LabelFor(m => m.Movie.GenreId)
-        @Html.DropDownListFor(m => m.Movie.GenreId, new SelectList(Model.Genres,"Id","Name"),"Select Genre", new { @class="form-control"})
+        @Html.LabelFor(m => m.GenreId)
+        @Html.DropDownListFor(m => m.GenreId, new SelectList(Model.Genres, "Id", "Name"), "Select Genre", new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.GenreId)
     </div>
     <div class="form-group">
-        @Html.LabelFor(m => m.Movie.Stock)
-        @Html.TextBoxFor(m => m.Movie.Stock, new { @class = "form-control" })
+        @Html.LabelFor(m => m.Stock)
+        @Html.TextBoxFor(m => m.Stock, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Stock)
     </div>
 
-
-    @Html.HiddenFor(m=>m.Movie.Id)
+    @*@Html.Hidden("Movie.Id",(Model.Movie!=null)? Model.Id : 0)*@
+    @*solve intialising date in new action, no need for new movie object to pass in controller, but code would brake when changing name properties*@
+    @Html.HiddenFor(m => m.Id)
+    @Html.AntiForgeryToken()
     <button type="submit" class="btn btn-primary">Add Movie</button>
 
+}
+
+@section scripts
+    {
+    @Scripts.Render("~/bundles/jqueryval")
 }
 
