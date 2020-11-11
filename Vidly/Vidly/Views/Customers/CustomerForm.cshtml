@@ -34,6 +34,7 @@
         </label>
     </div>
     @Html.HiddenFor(m => m.Customer.Id)
+@Html.AntiForgeryToken() // create token, create it as a hidden field on this computer & as a cookie on the users computer
     <button type="submit" class="btn btn-primary">Submit</button>
 }
 
