@@ -47,7 +47,9 @@ namespace Vidly.Controllers
         {
             var viewModel = new CustomerFormViewModel
             {
-                MembershipTypes = _dbContext.MembershipTypes.ToList()
+                MembershipTypes = _dbContext.MembershipTypes.ToList(),
+                Customer = new Customer() // otherwise in validationsummery, error for our hidden field ID, now id=0
+                
             };
 
             return View("CustomerForm",viewModel);

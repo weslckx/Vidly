@@ -8,28 +8,39 @@
 
 @using (Html.BeginForm("Save", "Customers"))
 {
+    @*To show list of validationmessages*@
+    @*@Html.ValidationSummary()*@
+    @Html.ValidationSummary(true, "Please fix the following errors:")
+
     <div class="form-group">
         @Html.LabelFor(m => m.Customer.Name)
         @Html.TextBoxFor(m => m.Customer.Name, new { @class = "form-control" }) @*Add bootstrap class*@
-        @Html.ValidationMessageFor(m=>m.Customer.Name)
+        @Html.ValidationMessageFor(m => m.Customer.Name)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Customer.MembershipTypeId) @*Id!!!*@
+        @Html.DropDownListFor(m => m.Customer.MembershipTypeId, new SelectList(Model.MembershipTypes, "Id", "Name"), "Select Membership Type", new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Customer.MembershipTypeId)
     </div>
     <div class="form-group">
         @Html.LabelFor(m => m.Customer.Birthdate)
         @*<label for="Birthdate">Date Of Birth</label>*@
         @Html.TextBoxFor(m => m.Customer.Birthdate, "{0:d MMM yyyy}", new { @class = "form-control" })
-        @Html.ValidationMessageFor(m=>m.Customer.Birthdate)
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(m => m.Customer.MembershipTypeId) @*Id!!!*@
-        @Html.DropDownListFor(m => m.Customer.MembershipTypeId, new SelectList(Model.MembershipTypes, "Id", "Name"), "Select Membership Type", new { @class = "form-control" })
-        @Html.ValidationMessageFor(m=>m.Customer.MembershipTypeId)
+        @Html.ValidationMessageFor(m => m.Customer.Birthdate)
     </div>
     <div class="form-check">
         <label>
             @Html.CheckBoxFor(m => m.Customer.IsSubscribedToNewsletter) Subscribed to Newsletter?
         </label>
     </div>
-    @Html.HiddenFor(m=>m.Customer.Id)
+    @Html.HiddenFor(m => m.Customer.Id)
     <button type="submit" class="btn btn-primary">Submit</button>
 }
+
+@*default (_layout), rendering script is false, so we can choose where to use clientside validation*@
+
+@section scripts
+    {
+    @Scripts.Render("~/bundles/jqueryval")
+    }
 
