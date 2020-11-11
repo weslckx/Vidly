@@ -31,23 +31,23 @@ namespace Vidly.Controllers.Api
             return _dbContext.Customers.ToList().Select(Mapper.Map<Customer, CustomerDto>); //delegate
         }
 
-        public CustomerDto GetCustomer(int id)
+        public IHttpActionResult GetCustomer(int id)
         {
             var customer= _dbContext.Customers.SingleOrDefault(c => c.Id == id);
 
             if (customer == null)
-                throw new HttpResponseException(HttpStatusCode.NotFound);
+                return NotFound();
 
-            return Mapper.Map<Customer,CustomerDto>(customer);
+            return Ok(Mapper.Map<Customer,CustomerDto>(customer));
 
         }
 
         // POST /api/customers
        [HttpPost]
-        public CustomerDto CreateCustomer(CustomerDto customerDto)
+        public IHttpActionResult CreateCustomer(CustomerDto customerDto) // httpcode is now 200, but need to be 201(ok,create), so change returntype from dto to http
         {
             if (!ModelState.IsValid)
-                throw new HttpResponseException(HttpStatusCode.BadRequest);
+                return BadRequest();
 
             // new object
             var customer = Mapper.Map<CustomerDto, Customer>(customerDto);
@@ -58,7 +58,7 @@ namespace Vidly.Controllers.Api
             //DB generated ID
             customerDto.Id = customer.Id;
 
-            return customerDto;
+            return Created(new Uri(Request.RequestUri+"/"+customer.Id),customerDto); //uri unified resource identifier = /api/customer/10
         }
 
         // PUT /api/customers/1
