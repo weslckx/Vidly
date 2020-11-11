@@ -13,7 +13,8 @@ namespace Vidly.Models
         {
             var customer = (Customer)validationContext.ObjectInstance; //get acces to object, cast it to customer
 
-            if (customer.MembershipTypeId==0 ||customer.MembershipTypeId == 1) //"magic number", need to refactor it
+            if (customer.MembershipTypeId== MembershipType.Unknown 
+                ||customer.MembershipTypeId == MembershipType.PayAsYouGo) //"magic number", need to refactor it
                 return ValidationResult.Success;
 
             if (customer.Birthdate == null)
