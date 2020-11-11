@@ -56,6 +56,19 @@ namespace Vidly.Controllers
         [HttpPost]
         public ActionResult Save(Customer customer) //viewmodel gaat hier, maar customer ook; zo slim om te zien dat customer wordt gebruikt
         {
+            if (!ModelState.IsValid)
+            {
+                var viewmodel = new CustomerFormViewModel
+                {
+                    Customer = customer,
+                    MembershipTypes = _dbContext.MembershipTypes.ToList()
+                };
+
+                return View("CustomerForm",viewmodel);
+
+            }
+                
+
             if(customer.Id==0)
             _dbContext.Customers.Add(customer);
 
@@ -96,6 +109,13 @@ namespace Vidly.Controllers
 
             return View("CustomerForm",viewModel);
         }
+
+
+
+
+
+
+
 
         //private IEnumerable<Customer> GetCustomers()
         //{
