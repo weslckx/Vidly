@@ -33,6 +33,10 @@
 {
     <script>
         $(document).ready(function () {
+            $("#customers").DataTable();
+
+
+
             $("#customers").on("click",".js-delete", function () { // now only 1 click handler for al customers. Added filter '.js-delete'
                 // add reference to button when clicked
                 var button = $(this);
