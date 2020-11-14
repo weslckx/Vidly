@@ -28,9 +28,7 @@ namespace Vidly.Controllers
         // GET: Customers
         public ActionResult Index()
         {
-            // add System.Data.Entity
-            //add include to eager load. We need membershiptype, won't be loaded by default!
-            return View(_dbContext.Customers.Include(c=> c.MembershipType).ToList());
+            return View();
         }
 
         public ActionResult Details(int id)
