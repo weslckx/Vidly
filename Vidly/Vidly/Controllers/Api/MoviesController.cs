@@ -27,21 +27,21 @@ namespace Vidly.Controllers.Api
             return _dbContext.Movies.ToList().Select(Mapper.Map<Movie,MovieDto>);
         }
 
-        public MovieDto GetMovie(int id)
+        public IHttpActionResult GetMovie(int id)
         {
             var movie = _dbContext.Movies.SingleOrDefault(m => m.Id == id);
 
             if (movie == null)
-                throw new HttpResponseException(HttpStatusCode.NotFound);
+                return NotFound();
 
-            return Mapper.Map<Movie,MovieDto>(movie);
+            return Ok(Mapper.Map<Movie,MovieDto>(movie));
         }
 
         [HttpPost]  // /api/customers
-        public MovieDto CreateMovie(MovieDto movieDto)
+        public IHttpActionResult CreateMovie(MovieDto movieDto)
         {
             if (!ModelState.IsValid)
-                throw new HttpResponseException(HttpStatusCode.BadRequest);
+                return BadRequest();
 
             var movie = Mapper.Map<MovieDto, Movie>(movieDto);
 
@@ -52,7 +52,7 @@ namespace Vidly.Controllers.Api
             movieDto.Id = movie.Id;
 
 
-            return movieDto;
+            return Created(new Uri(Request.RequestUri+"/"+movie.Id),movieDto);
         }
 
         [HttpPut]
