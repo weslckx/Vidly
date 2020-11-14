@@ -8,11 +8,12 @@
 
 @if (!Model.Any()){<p>There aren't any customers yet.</p>}
 
-<table class=“table table-­bordered table­‐hover”>
+<table id="customers" class=“table table-­bordered table­‐hover”>
     <thead>
         <tr>
             <td>Customer Name</td>
             <td>Membership Type</td>
+            <td>Delete</td>
         </tr>
     </thead>
     <tbody>
@@ -22,11 +23,35 @@
 <tr>
     <td>@Html.ActionLink(customer.Name, "Edit", "Customers", new { id = customer.Id }, null)</td>
     <td>@customer.MembershipType.Name</td>
+    <td><button data-customer-id="@customer.Id" class="btn-link js-delete">Delete</button></td> @*Added class js-delete purely for javascript*@
 </tr>            }
     </tbody>
 
 </table>
 
+@section scripts
+{
+    <script>
+        $(document).ready(function () {
+            $("#customers .js-delete").on("click", function () {
+                // add reference to button when clicked
+                var button = $(this);
 
+                if (confirm("Are you sure you want to delete this customer?")) {
+                    $.ajax({
+                        url: "/api/customers/" + button.attr("data-customer-id"),
+                        method: "DELETE",
+                        success: function () { // now to navigate up to DOM tree back to our TR
+                            button.parent("tr").remove();
+                        }
+                    })
+                }
+            });
+
+
+
+        });
+    </script>
+    }
 
 
