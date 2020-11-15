@@ -22,11 +22,13 @@ namespace Vidly.Models
         [Display(Name ="Number in Stock")]
         [Range(1,20)]
         public int Stock { get; set; }
+        public byte NumberAvailable { get; set; }
 
         //NAV PROP
         [Display(Name ="Genre")] 
         public byte GenreId { get; set; } // ook byte zetten, anders twee ID
         public Genre Genre { get; set; }
+
 
     }
 }
